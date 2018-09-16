@@ -5,7 +5,7 @@ author: "Polidea"
 homepage: https://github.com/Polidea/FlutterBleLib
 
 environment:
-  sdk: ">=1.8.0 <2.0.0"
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 flutter:
   plugin:
@@ -15,7 +15,6 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  convert: "^2.0.1"
-  protobuf: '^0.6.0'
+  protobuf: '^0.10.2'
 
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ble_lib/flutter_ble_lib.dart';
 import 'package:flutter_ble_lib_example/ui/button_widget.dart';
@@ -97,7 +98,7 @@ class InsertValueDialogState extends State<InsertValueDialog> {
 
   _dataAsBytes() {
     if (_currentDataType == DataType.STRING) {
-      return UTF8.encode(_controller.text);
+      return utf8.encode(_controller.text);
     }
     return new List<int>()
       ..add(int.parse(

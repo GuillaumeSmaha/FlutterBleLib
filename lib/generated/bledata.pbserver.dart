@@ -1,8 +1,8 @@
 ///
 //  Generated code. Do not modify.
+//  source: bledata.proto
 ///
-// ignore_for_file: non_constant_identifier_names,library_prefixes
-library bledata_pbserver;
+// ignore_for_file: non_constant_identifier_names,library_prefixes,unused_import
 
 export 'bledata.pb.dart';
 
