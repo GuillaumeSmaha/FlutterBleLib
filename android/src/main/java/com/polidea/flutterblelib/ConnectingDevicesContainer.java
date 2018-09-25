@@ -3,21 +3,21 @@ package com.polidea.flutterblelib;
 
 import com.polidea.flutterblelib.utils.DisposableMap;
 
-import rx.Subscription;
+import io.reactivex.disposables.Disposable;
 
 public class ConnectingDevicesContainer {
 
     final private DisposableMap disposableMap = new DisposableMap();
 
-    public void replaceConnectingSubscription(String key, Subscription subscription) {
-        disposableMap.replaceSubscription(key, subscription);
+    public void replaceConnectingDisposable(String key, Disposable disposable) {
+        disposableMap.replaceDisposable(key, disposable);
     }
 
-    public boolean removeConnectingDeviceSubscription(String key) {
-        return disposableMap.removeSubscription(key);
+    public boolean removeConnectingDeviceDisposable(String key) {
+        return disposableMap.removeDisposable(key);
     }
 
-    public void clearConnectigDeviceSubscription() {
-        disposableMap.removeAllSubscriptions();
+    public void clearConnectigDeviceDisposable() {
+        disposableMap.removeAllDisposables();
     }
 }

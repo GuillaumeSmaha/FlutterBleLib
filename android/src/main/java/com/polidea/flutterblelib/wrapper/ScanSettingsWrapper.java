@@ -2,8 +2,8 @@ package com.polidea.flutterblelib.wrapper;
 
 import android.os.ParcelUuid;
 
-import com.polidea.rxandroidble.scan.ScanFilter;
-import com.polidea.rxandroidble.scan.ScanSettings;
+import com.polidea.rxandroidble2.scan.ScanFilter;
+import com.polidea.rxandroidble2.scan.ScanSettings;
 
 public class ScanSettingsWrapper {
     private final ScanSettings scanSettings;

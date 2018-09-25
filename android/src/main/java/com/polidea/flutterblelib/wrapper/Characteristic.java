@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.polidea.flutterblelib.utils.IdGenerator;
 import com.polidea.flutterblelib.utils.IdGeneratorKey;
-import com.polidea.rxandroidble.internal.RxBleLog;
+import com.polidea.rxandroidble2.internal.RxBleLog;
 
 import java.util.UUID;
 

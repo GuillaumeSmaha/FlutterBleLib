@@ -4,39 +4,54 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import rx.Subscription;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.SingleSource;
 
 public class DisposableMap {
 
-    final private Map<String, Subscription> subscriptions = new HashMap<>();
+    final private Map<String, Disposable> disposables = new HashMap<>();
+    final private Map<String, SingleSource> singles = new HashMap<>();
 
-    public void replaceSubscription(String key, Subscription subscription) {
-        Subscription oldSubscription = subscriptions.put(key, subscription);
-        if (oldSubscription != null && !oldSubscription.isUnsubscribed()) {
-            oldSubscription.unsubscribe();
+    public void replaceDisposable(String key, Disposable disposable) {
+        Disposable oldDisposable = disposables.put(key, disposable);
+        if (oldDisposable != null && !oldDisposable.isDisposed()) {
+            oldDisposable.dispose();
         }
     }
 
-    public boolean removeSubscription(String key) {
-        Subscription subscription = subscriptions.remove(key);
-        if (subscription == null) return false;
-        if (!subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
+    public void replaceDisposable(String key, SingleSource disposable) {
+        Disposable oldDisposable = singles.put(key, disposable);
+        if (oldDisposable != null && !oldDisposable.isDisposed()) {
+            oldDisposable.dispose();
         }
+    }
+
+    public boolean removeDisposable(String key) {
+        Disposable disposable = disposables.remove(key);
+        if (disposable == null) return false;
+        if (!disposable.isDisposed()) {
+            disposable.dispose();
+        }
+        singles.remove(key);
         return true;
     }
 
     /**
-     * Removes all subscriptions from map and unsubscribes them if they were subscribed.
+     * Removes all disposables from map and dispose()s them if they were subscribed.
      */
-    public void removeAllSubscriptions() {
-        Iterator<Map.Entry<String, Subscription>> it = subscriptions.entrySet().iterator();
+    public void removeAllDisposables() {
+        Iterator<Map.Entry<String, Disposable>> it = disposables.entrySet().iterator();
         while (it.hasNext()) {
-            Subscription subscription = it.next().getValue();
+            Disposable disposable = it.next().getValue();
             it.remove();
-            if (!subscription.isUnsubscribed()) {
-                subscription.unsubscribe();
+            if (!disposable.isDisposed()) {
+                disposable.dispose();
             }
+        }
+
+        Iterator<Map.Entry<String, SingleSource>> itt = singles.entrySet().iterator();
+        while (itt.hasNext()) {
+            itt.remove();
         }
     }
 }

@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 
 import com.polidea.flutterblelib.BleData;
 import com.polidea.flutterblelib.utils.StringUtils;
-import com.polidea.rxandroidble.RxBleConnection;
-import com.polidea.rxandroidble.RxBleDevice;
+import com.polidea.rxandroidble2.RxBleConnection;
+import com.polidea.rxandroidble2.RxBleDevice;
 
 import java.util.List;
 import java.util.UUID;

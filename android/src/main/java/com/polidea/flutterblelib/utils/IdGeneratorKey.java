@@ -1,7 +1,7 @@
 package com.polidea.flutterblelib.utils;
 
 
-import com.polidea.rxandroidble.RxBleDevice;
+import com.polidea.rxandroidble2.RxBleDevice;
 import java.util.UUID;
 
 public class IdGeneratorKey {
