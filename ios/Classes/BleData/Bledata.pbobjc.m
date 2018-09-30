@@ -301,12 +301,14 @@ typedef struct BleDataBleDeviceMessage__storage_ {
 @dynamic rssi;
 @dynamic timestampNanos;
 @dynamic scanCallbackTypeMessage;
+@dynamic raw;
 
 typedef struct BleDataScanResultMessage__storage_ {
   uint32_t _has_storage_[1];
   int32_t rssi;
   int32_t scanCallbackTypeMessage;
   BleDataBleDeviceMessage *bleDeviceMessage;
+  NSData *raw;
   uint64_t timestampNanos;
 } BleDataScanResultMessage__storage_;
 
@@ -351,6 +353,15 @@ typedef struct BleDataScanResultMessage__storage_ {
         .offset = (uint32_t)offsetof(BleDataScanResultMessage__storage_, scanCallbackTypeMessage),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeInt32,
+      },
+      {
+        .name = "raw",
+        .dataTypeSpecific.className = NULL,
+        .number = BleDataScanResultMessage_FieldNumber_Raw,
+        .hasIndex = 4,
+        .offset = (uint32_t)offsetof(BleDataScanResultMessage__storage_, raw),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeBytes,
       },
     };
     GPBDescriptor *localDescriptor =

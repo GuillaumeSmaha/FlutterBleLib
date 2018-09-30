@@ -27,6 +27,7 @@ message ScanResultMessage {
     int32 rssi = 2;
     uint64 timestampNanos = 3;
     int32 scanCallbackTypeMessage = 4;
+    bytes raw = 5;
 }
 
 

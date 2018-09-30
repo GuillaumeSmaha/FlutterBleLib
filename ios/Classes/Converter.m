@@ -57,6 +57,7 @@
     }
     bleDataScanResultMessage.bleDeviceMessage.rssi = value[1][@"rssi"];
     bleDataScanResultMessage.bleDeviceMessage.mtu = value[1][@"mtu"];
+    bleDataScanResultMessage.raw = value[1][@"raw"];
     return bleDataScanResultMessage;
 }
 

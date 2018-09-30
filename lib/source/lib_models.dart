@@ -29,22 +29,36 @@ class ScanResult {
   Int64 timestampNanos;
   int scanCallbackType;
   int mtu;
+  //List<int> raw;
+  Uint8List raw;
 
   ScanResult(this.bleDevice,
       this.rssi,
       this.timestampNanos,
-      this.scanCallbackType);
+      this.scanCallbackType,
+      this.raw);
 
   static ScanResult fromMessage(bleData.ScanResultMessage scanResultMessage) =>
       new ScanResult(
           BleDevice.fromMessage(scanResultMessage.bleDeviceMessage),
           scanResultMessage.rssi,
           scanResultMessage.timestampNanos,
-          scanResultMessage.scanCallbackTypeMessage);
+          scanResultMessage.scanCallbackTypeMessage,
+          scanResultMessage.raw);
 
 
   bool hasTheSameDeviceAs(ScanResult scanResult) =>
       this.bleDevice.id == scanResult.bleDevice.id;
+
+
+  String rawToString() {
+    String res = "";
+    this.raw.forEach((b) {
+      //res += "0x";
+      res += b.toRadixString(16).padLeft(2, '0') + " ";
+    });
+    return res.trimRight();
+  }
 
   update(ScanResult scanResultItem) {
     bleDevice
@@ -53,6 +67,7 @@ class ScanResult {
     rssi = scanResultItem.rssi;
     timestampNanos = scanResultItem.timestampNanos;
     scanCallbackType = scanResultItem.scanCallbackType;
+    raw = scanResultItem.raw;
   }
 }
 

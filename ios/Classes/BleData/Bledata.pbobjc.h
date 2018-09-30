@@ -149,6 +149,7 @@ typedef GPB_ENUM(BleDataScanResultMessage_FieldNumber) {
   BleDataScanResultMessage_FieldNumber_Rssi = 2,
   BleDataScanResultMessage_FieldNumber_TimestampNanos = 3,
   BleDataScanResultMessage_FieldNumber_ScanCallbackTypeMessage = 4,
+  BleDataScanResultMessage_FieldNumber_Raw = 5,
 };
 
 @interface BleDataScanResultMessage : GPBMessage
@@ -162,6 +163,8 @@ typedef GPB_ENUM(BleDataScanResultMessage_FieldNumber) {
 @property(nonatomic, readwrite) uint64_t timestampNanos;
 
 @property(nonatomic, readwrite) int32_t scanCallbackTypeMessage;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSData *raw;
 
 @end
 

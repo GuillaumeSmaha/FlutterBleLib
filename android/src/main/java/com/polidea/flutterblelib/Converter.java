@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Base64;
 
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.ByteString;
 import com.polidea.flutterblelib.utils.StringUtils;
 import com.polidea.flutterblelib.utils.UUIDConverter;
 import com.polidea.flutterblelib.wrapper.Characteristic;
@@ -63,6 +64,7 @@ class Converter {
                 .setRssi(scanResult.getRssi())
                 .setTimestampNanos(scanResult.getTimestampNanos())
                 .setScanCallbackTypeMessage(scanResult.getCallbackType().ordinal())
+                .setRaw(ByteString.copyFrom(scanResult.getScanRecord().getBytes()))
                 .build();
     }
 

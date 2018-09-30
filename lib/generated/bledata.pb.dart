@@ -103,6 +103,7 @@ class ScanResultMessage extends $pb.GeneratedMessage {
     ..a<int>(2, 'rssi', $pb.PbFieldType.O3)
     ..a<Int64>(3, 'timestampNanos', $pb.PbFieldType.OU6, Int64.ZERO)
     ..a<int>(4, 'scanCallbackTypeMessage', $pb.PbFieldType.O3)
+    ..a<List<int>>(5, 'raw', $pb.PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
@@ -139,6 +140,11 @@ class ScanResultMessage extends $pb.GeneratedMessage {
   set scanCallbackTypeMessage(int v) { $_setSignedInt32(3, v); }
   bool hasScanCallbackTypeMessage() => $_has(3);
   void clearScanCallbackTypeMessage() => clearField(4);
+
+  List<int> get raw => $_getN(4);
+  set raw(List<int> v) { $_setBytes(4, v); }
+  bool hasRaw() => $_has(4);
+  void clearRaw() => clearField(5);
 }
 
 class ConnectToDeviceDataMessage extends $pb.GeneratedMessage {
