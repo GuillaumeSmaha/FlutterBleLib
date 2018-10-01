@@ -19,8 +19,6 @@ class BleDevice {
   String toString() {
     return "BleDevice : [macAddress = $id, name = $name, mtu = $mtu, rssi = $rssi, isConnected = $isConnected]";
   }
-
-
 }
 
 class ScanResult {
@@ -29,7 +27,6 @@ class ScanResult {
   Int64 timestampNanos;
   int scanCallbackType;
   int mtu;
-  //List<int> raw;
   Uint8List raw;
 
   ScanResult(this.bleDevice,
@@ -58,6 +55,33 @@ class ScanResult {
       res += b.toRadixString(16).padLeft(2, '0') + " ";
     });
     return res.trimRight();
+  }
+
+  Uint8List extractProperty(int property) {
+    if (this.raw.length > 0) {
+      for(var i = 0; i < this.raw.length; i++) {
+
+        if (this.raw[i] == 0x00) {
+          break;
+        }
+        else if (this.raw[i+1] == property) {
+
+          return this.raw.sublist(i+2, i + this.raw[i] + 1);
+        }
+        else {
+          i += this.raw[i];
+          continue;
+        }
+      }
+    }
+    return Uint8List.fromList([]);
+  }
+
+
+  IconData getAppearanceIcon() {
+    Uint8List appearanceData = this.extractProperty(0x19);
+    Uint8List classOfDeviceData = this.extractProperty(0x0D);
+    return BleAppearance.getIcon(appearanceData, classOfDeviceData);
   }
 
   update(ScanResult scanResultItem) {
