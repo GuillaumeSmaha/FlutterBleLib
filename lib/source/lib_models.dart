@@ -60,7 +60,7 @@ class ScanResult {
   List<int> getServicesUUID16() {
     Uint8List data = this.extractProperty(0x3);
     List<int> res = [];
-    if (data.length > 0) {
+    if (data.isNotEmpty) {
       for(var i = 0; i < data.length; i += 2) {
         res.add((data[i+1] << 8) + data[i]);
       }
@@ -69,7 +69,7 @@ class ScanResult {
   }
 
   Uint8List extractProperty(int property) {
-    if (this.raw.length > 0) {
+    if (this.raw.isNotEmpty) {
       for(var i = 0; i < this.raw.length; i++) {
 
         if (this.raw[i] == 0x00) {

@@ -5,7 +5,7 @@ part of flutter_ble_lib;
 class BleAppearance {
 
   static List<int> getAppearance(Uint8List data) {
-    if (data.length > 0) {
+    if (data.isNotEmpty) {
       int val = (data[1] << 8) + data[0];
       int cat = val >> 6;
       int subcat = val - (cat << 6);
@@ -16,7 +16,7 @@ class BleAppearance {
 
 
   static List<int> getClassOfDevice(Uint8List data) {
-    if (data.length > 0) {
+    if (data.isNotEmpty) {
       int val = (data[0] << 16) + (data[1] << 8) + data[2];
       int services = (val & COD_SERVICE_MASK) >> COD_SERVICE_BIT_OFFSET;
       int major = (val & COD_MAJOR_MASK) >> COD_MAJOR_BIT_OFFSET;
