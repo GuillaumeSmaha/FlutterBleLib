@@ -57,6 +57,17 @@ class ScanResult {
     return res.trimRight();
   }
 
+  List<int> getServicesUUID16() {
+    Uint8List data = this.extractProperty(0x3);
+    List<int> res = [];
+    if (data.length > 0) {
+      for(var i = 0; i < data.length; i += 2) {
+        res.add((data[i+1] << 8) + data[i]);
+      }
+    }
+    return res;
+  }
+
   Uint8List extractProperty(int property) {
     if (this.raw.length > 0) {
       for(var i = 0; i < this.raw.length; i++) {
